@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Vendor 123",
+    "slug": "vendor123",
+    "logo": "https://placehold.co/150?text=Vendor+123",
+    "items": [
+      {
+        "id": 1,
+        "name": "Cold Coffee",
+        "price": 60,
+        "image": "https://placehold.co/100?text=Cold+Coffee"
+      },
+      {
+        "id": 2,
+        "name": "Veg Sandwich",
+        "price": 50,
+        "image": "https://placehold.co/100?text=Veg+Sandwitch"
+      },
+      {
+        "id": 3,
+        "name": "Samosa",
+        "price": 20,
+        "image": "https://placehold.co/100?text=Samosa"
+      },
+      {
+        "id": 4,
+        "name": "Chai",
+        "price": 15,
+        "image": "https://placehold.co/100?text=Chai"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Burger Queen",
+    "slug": "burgerqueen",
+    "logo": "https://placehold.co/150?text=Burger+Queen ",
+    "items": [
+      {
+        "id": 1,
+        "name": "Cheeseburger",
+        "price": 120,
+        "image": "https://placehold.co/100?text=Cheese+Burger"
+      },
+      {
+        "id": 2,
+        "name": "French Fries",
+        "price": 60,
+        "image": "https://placehold.co/100?text=French+Fries"
+      },
+      {
+        "id": 3,
+        "name": "Fried Rice",
+        "price": 50,
+        "image": "https://placehold.co/100?text=Fried+Rice"
+      },
+      {
+        "id": 4,
+        "name": "Cold Drink",
+        "price": 30,
+        "image": "https://placehold.co/100?text=Cold+Drink"
+      }
+    ]
+  }
+]

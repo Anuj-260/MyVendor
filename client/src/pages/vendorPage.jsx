@@ -1,0 +1,96 @@
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import MenuItem from "../components/menuItem";
+import { Link } from "react-router-dom";
+import Cart from "../components/cart";
+
+function VendorPage() {
+  const { slug } = useParams();
+  const [vendor, setVendor] = useState(null);
+  const [error, setError] = useState(false);
+  const [cart, setCart] = useState([]);
+  const Navigate = useNavigate();
+  const [cartTotal, setCartTotal] = useState("0.00");
+
+  useEffect(() => {
+    fetch(`/api/vendors/${slug}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Vendor not found");
+        return res.json();
+      })
+      .then((data) => {
+        setVendor(data.vendor);
+        setError(false);
+      })
+      .catch(() => setError(true));
+  }, [slug]);
+
+  if (error) return <h2>Vendor Not Found</h2>;
+  if (!vendor) return <h2>Loading...</h2>;
+
+  // 🛒 Add item to cart
+  const handleAddToCart = (item) => {
+    setCart((prev) => {
+      const existing = prev.find((i) => i.id === item.id);
+      if (existing) {
+        return prev.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        );
+      }
+      return [...prev, { ...item, quantity: 1 }];
+    });
+  };
+
+  // 🛒 Update quantity
+  const updateQuantity = (id, change) => {
+    setCart((prev) =>
+      prev
+        .map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity + change } : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
+  // 🛒 Remove item
+  const removeItem = (id) => {
+    setCart((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  return (
+    <div className="vendor-container">
+      <div className="vendor-header">
+        {vendor.logo && (
+          <img className="vendor-logo" src={vendor.logo} alt={vendor.name} />
+        )}
+        <h1 className="vendor-name">{vendor.name}</h1>
+        <h2 className="back-link">
+          <Link to="/">Back</Link>
+        </h2>
+      </div>
+
+      <div className="menu-grid">
+        {vendor.items.map((item) => (
+          <MenuItem key={item.id} item={item} onAdd={handleAddToCart} />
+        ))}
+      </div>
+      <Cart
+        cart={cart}
+        onUpdateQty={updateQuantity}
+        onRemove={removeItem}
+        onTotalChange={setCartTotal}
+      />
+
+      <button
+        className="navigate-btn"
+        onClick={() =>
+          Navigate("/checkout", { state: { cart, total: cartTotal } })
+        }
+      >
+        Proceed To Checkout
+      </button>
+    </div>
+  );
+}
+
+export default VendorPage;

@@ -1,0 +1,156 @@
+/* homePage.css */
+
+.para {
+  font-size: 24px;
+}
+
+li {
+  font-size: 20px;
+}
+
+/* // vendorPage.css */
+.vendor-container {
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.vendor-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.back-link {
+  position: absolute;
+  right: 6rem;
+  top: 0;
+}
+
+.vendor-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.vendor-name {
+  font-size: 28px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 50px;
+}
+
+.navigate-btn {
+  padding: 8px 16px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
+  background-color: chocolate;
+  color: white;
+  margin-left: 60px;
+}
+
+/* menuItem.css */
+
+.menu-item {
+  border: 1px solid #ddd;
+  padding: 16px;
+  text-align: center;
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease;
+}
+
+.menu-item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.item-name {
+  font-size: 18px;
+  margin: 10px 0 5px;
+}
+
+.item-price {
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.add-to-cart {
+  padding: 8px 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.add-to-cart:hover {
+  background-color: #218838;
+}
+
+/* cart.css */
+
+.cart-box {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 500px;
+}
+
+.cart-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+.cart-controls button {
+  margin-left: 5px;
+}
+
+.cart-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.cart-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-icon {
+  font-size: 32px; /* size of the cart */
+}
+
+.cart-badge {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+
+  border-radius: 50%;
+  line-height: 1;
+  min-width: 20px;
+  text-align: center;
+}
