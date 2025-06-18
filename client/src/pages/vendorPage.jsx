@@ -65,7 +65,9 @@ function VendorPage() {
         )}
         <h1 className="vendor-name">{vendor.name}</h1>
         <h2 className="back-link">
-          <Link to="/">Back</Link>
+          <Link className="link" to="/">
+            Back
+          </Link>
         </h2>
       </div>
 
@@ -81,14 +83,18 @@ function VendorPage() {
         onTotalChange={setCartTotal}
       />
 
-      <button
-        className="navigate-btn"
-        onClick={() =>
-          Navigate("/checkout", { state: { cart, total: cartTotal } })
-        }
+      <div
+        style={{ textAlign: "center", maxWidth: "900px", marginTop: "40px" }}
       >
-        Proceed To Checkout
-      </button>
+        <button
+          className="navigate-btn"
+          onClick={() =>
+            Navigate("/checkout", { state: { cart, total: cartTotal } })
+          }
+        >
+          Proceed To Checkout
+        </button>
+      </div>
     </div>
   );
 }
