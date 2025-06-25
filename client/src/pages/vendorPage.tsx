@@ -1,18 +1,22 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import MenuItem from "../components/menuItem";
 import Cart from "../components/cart";
-import { Vendor, VendorItem } from "../types";
-
-interface CartItem extends VendorItem {
-  quantity: number;
-}
+import { RootState, AppDispatch } from "../redux/store";
+import {
+  addToCart,
+  updateQty,
+  removeFromCart,
+} from "../redux/slices/cartSlice";
+import { Vendor } from "../types";
 
 function VendorPage() {
   const { slug } = useParams<{ slug: string }>();
+  const dispatch = useDispatch<AppDispatch>();
+  const cart = useSelector((state: RootState) => state.cart);
   const [vendor, setVendor] = useState<Vendor | null>(null);
   const [error, setError] = useState(false);
-  const [cart, setCart] = useState<CartItem[]>([]);
   const [cartTotal, setCartTotal] = useState(0);
   const navigate = useNavigate();
 
@@ -32,32 +36,6 @@ function VendorPage() {
   if (error) return <h2>Vendor Not Found</h2>;
   if (!vendor) return <h2>Loading...</h2>;
 
-  const handleAddToCart = (item: VendorItem) => {
-    setCart((prev) => {
-      const existing = prev.find((i) => i.id === item.id);
-      if (existing) {
-        return prev.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
-        );
-      }
-      return [...prev, { ...item, quantity: 1 }];
-    });
-  };
-
-  const updateQuantity = (id: number, change: number) => {
-    setCart((prev) =>
-      prev
-        .map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + change } : item
-        )
-        .filter((item) => item.quantity > 0)
-    );
-  };
-
-  const removeItem = (id: number) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
-  };
-
   return (
     <div className="vendor-container">
       <div className="vendor-header">
@@ -74,14 +52,18 @@ function VendorPage() {
 
       <div className="menu-grid">
         {vendor.items.map((item) => (
-          <MenuItem key={item.id} item={item} onAdd={handleAddToCart} />
+          <MenuItem
+            key={item.id}
+            item={item}
+            onAdd={() => dispatch(addToCart(item))}
+          />
         ))}
       </div>
 
       <Cart
         cart={cart}
-        onUpdateQty={updateQuantity}
-        onRemove={removeItem}
+        onUpdateQty={(id, change) => dispatch(updateQty({ id, change }))}
+        onRemove={(id) => dispatch(removeFromCart(id))}
         onTotalChange={setCartTotal}
       />
 
@@ -100,5 +82,4 @@ function VendorPage() {
     </div>
   );
 }
-
 export default VendorPage;

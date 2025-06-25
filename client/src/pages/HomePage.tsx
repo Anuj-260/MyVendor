@@ -1,28 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import VendorHamburger from "../components/Hamburger";
-import { Vendor } from "../types";
+import { RootState, AppDispatch } from "../redux/store";
+import { fetchVendorsRequest } from "../redux/slices/vendorsSlice";
 
 function HomePage() {
-  const [vendors, setVendors] = useState<Vendor[]>([]);
-  const [error, setError] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const vendors = useSelector((state: RootState) => state.vendors.list);
+  const status = useSelector((state: RootState) => state.vendors.status);
 
   useEffect(() => {
-    fetch("/api/vendors")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch vendors");
-        return res.json();
-      })
-      .then((data) => {
-        setVendors(data.vendors);
-        setError(false);
-      })
-      .catch(() => setError(true));
-  }, []);
+    if (status === "idle") {
+      dispatch(fetchVendorsRequest());
+    }
+  }, [dispatch, status]);
 
-  if (error) return <h2>Error loading vendors</h2>;
-  if (vendors.length === 0) return <h2>Loading vendors...</h2>;
+  if (status === "loading") {
+    return <h2>Loading vendors...</h2>;
+  }
 
+  if (status === "failed") {
+    return <h2>Error loading vendors</h2>;
+  }
+
+  if (status === "succeeded" && vendors.length === 0) {
+    return <h2>No vendors found</h2>;
+  }
   return (
     <div
       style={{
@@ -53,7 +57,7 @@ function HomePage() {
                 <div>
                   <h3
                     style={{
-                      margin: "0",
+                      margin: 0,
                       padding: "10px",
                       fontSize: "18px",
                       background: "white",
@@ -70,5 +74,4 @@ function HomePage() {
     </div>
   );
 }
-
 export default HomePage;
