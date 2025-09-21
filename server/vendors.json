@@ -4,6 +4,8 @@
     "name": "Vendor 123",
     "slug": "vendor123",
     "logo": "https://placehold.co/150?text=Vendor+123",
+    "contact": "9838457688",
+    "Address": "Nehru Place, New Delhi",
     "items": [
       {
         "id": 1,
@@ -28,6 +30,12 @@
         "name": "Chai",
         "price": 15,
         "image": "https://placehold.co/100?text=Chai"
+      },
+      {
+        "id": 5,
+        "name": "Pasta",
+        "price": 70,
+        "image": "https://placehold.co/100?text=Pasta"
       }
     ]
   },
@@ -36,6 +44,8 @@
     "name": "Burger Queen",
     "slug": "burgerqueen",
     "logo": "https://placehold.co/150?text=Burger+Queen ",
+    "contact": "9876543210",
+    "Address": "Connaught place, New Delhi",
     "items": [
       {
         "id": 1,
@@ -60,6 +70,52 @@
         "name": "Cold Drink",
         "price": 30,
         "image": "https://placehold.co/100?text=Cold+Drink"
+      },
+      {
+        "id": 5,
+        "name": "Manchurian",
+        "price": 130,
+        "image": "https://placehold.co/100?text=Manchurian"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "KFC",
+    "slug": "Kfc",
+    "logo": "https://placehold.co/150?text=KFC",
+    "contact": "9876543240",
+    "Address": "Dhaula kaun, New Delhi",
+    "items": [
+      {
+        "id": 1,
+        "name": "Cheeseburger",
+        "price": 120,
+        "image": "https://placehold.co/100?text=Cheese+Burger"
+      },
+      {
+        "id": 2,
+        "name": "French Fries",
+        "price": 60,
+        "image": "https://placehold.co/100?text=French+Fries"
+      },
+      {
+        "id": 3,
+        "name": "Fried Rice",
+        "price": 50,
+        "image": "https://placehold.co/100?text=Fried+Rice"
+      },
+      {
+        "id": 4,
+        "name": "Cold Drink",
+        "price": 30,
+        "image": "https://placehold.co/100?text=Cold+Drink"
+      },
+      {
+        "id": 5,
+        "name": "Manchurian",
+        "price": 130,
+        "image": "https://placehold.co/100?text=Manchurian"
       }
     ]
   }

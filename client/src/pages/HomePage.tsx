@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import VendorHamburger from "../components/Hamburger";
+
 import { RootState, AppDispatch } from "../redux/store";
 import { fetchVendorsRequest } from "../redux/slices/vendorsSlice";
 
@@ -35,7 +35,6 @@ function HomePage() {
         minHeight: "100vh",
       }}
     >
-      <VendorHamburger />
       <h1 className="vendor-head">Welcome to the Vendor App</h1>
       <p className="para">Select a vendor:</p>
       <ul className="vendor-card">

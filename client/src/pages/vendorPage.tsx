@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MenuItem from "../components/menuItem";
 import Cart from "../components/cart";
+import VendorHamburger from "../components/Hamburger";
 import { RootState, AppDispatch } from "../redux/store";
 import {
   addToCart,
@@ -38,6 +39,7 @@ function VendorPage() {
 
   return (
     <div className="vendor-container">
+      <VendorHamburger Vendor={vendor} />
       <div className="vendor-header">
         {vendor.logo && (
           <img className="vendor-logo" src={vendor.logo} alt={vendor.name} />

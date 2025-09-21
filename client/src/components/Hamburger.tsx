@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { Vendor } from "../types";
 
-function VendorHamburger() {
+type Props = { Vendor: Vendor };
+
+function VendorHamburger({ Vendor }: Props) {
   const [open, setOpen] = useState(false);
-
+  console.log(Vendor);
   return (
     <div>
       <div className="hamburger-icon" onClick={() => setOpen(true)}>
@@ -16,11 +19,11 @@ function VendorHamburger() {
           X
         </button>
         <img
-          src="https://placehold.co/100x50?text=Vendor+App"
-          alt="Vendor"
+          src={Vendor.logo || "https://placehold.co/200x150?text=vendor+123"}
+          alt={Vendor.name}
           className="vendor-image"
         />
-        <h2>Vendor App</h2>
+        <h2>{Vendor.name}</h2>
 
         <div className="vendor-info">
           <div className="info-block">
@@ -29,11 +32,11 @@ function VendorHamburger() {
           </div>
           <div className="info-block">
             <strong>Contact:</strong>
-            <div>0455576728</div>
+            <div>{Vendor.contact}</div>
           </div>
           <div className="info-block">
             <strong>Address:</strong>
-            <div>Nehru Place, New Delhi</div>
+            <div>{Vendor.Address}</div>
           </div>
         </div>
       </div>

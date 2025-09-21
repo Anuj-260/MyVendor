@@ -21,10 +21,9 @@ li {
 
 .vendor-card {
   display: flex;
-  max-width: 800px;
   flex-wrap: wrap;
   justify-content: space-around;
-  /* gap: 20px; */
+  margin-top: 50px;
   list-style-type: none;
   padding: 0;
 }
@@ -58,6 +57,7 @@ li {
   display: flex;
   align-items: center;
   gap: 16px;
+  margin-top: 30px;
   margin-bottom: 20px;
   position: relative;
 }

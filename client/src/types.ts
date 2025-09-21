@@ -10,4 +10,6 @@ export interface Vendor {
   name: string;
   logo?: string;
   items: VendorItem[];
+  contact: string;
+  Address: string;
 }
